@@ -11,6 +11,7 @@ public class Main {
         }
     }
 
+    // addFirst
     public void addFirst(String data) {
         Node newNode = new Node(data);
         if (head == null) {
@@ -21,6 +22,7 @@ public class Main {
         head = newNode;
     }
 
+    // addLast
     public void addLast(String data) {
         Node newNode = new Node(data);
         if (head == null) {
@@ -34,6 +36,7 @@ public class Main {
         currNode.next = newNode;
     }
 
+    // printList
     public void printList() {
         if (head == null) {
             System.out.println("List is empty");
@@ -47,14 +50,48 @@ public class Main {
         System.out.println("null");
     }
 
+    // deleteFirst
+    public void deleteFirst() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        head = head.next;
+    }
+
+    // deleteLast
+    public void deleteLast() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        if (head.next == null) {
+            head = null;
+            return;
+        }
+
+        Node secondLast = head;
+        while (secondLast.next.next != null) {
+            secondLast = secondLast.next;
+        }
+        secondLast.next = null;
+    }
+
     public static void main(String[] args) {
         Main m = new Main();
         m.addFirst("a");
         m.addFirst("is");
         m.addFirst("This");
-        m.printList();
-        m.printList();
+        m.printList(); // Output: This --> is --> a --> null
+
         m.addLast("list");
-        m.printList();
+        m.printList(); // Output: This --> is --> a --> list --> null
+
+        m.deleteFirst();
+        m.printList(); // Output: is --> a --> list --> null
+
+        m.deleteLast();
+        m.printList(); // Output: is --> a --> null
     }
 }
